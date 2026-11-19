@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tokens de IA | Requerimientos de Software</title>
+<style>
+:root{--pink:#e85d9e;--deep:#8e376c;--pale:#fff0f7;--ink:#292333;--muted:#665d6b;--line:#f1d5e4;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fffafd;line-height:1.65}
+header{background:linear-gradient(125deg,#7e2e65,#d94f91 65%,#f4a4c9);color:white;padding:54px 7% 60px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:45px}
+.logo{font-weight:800;letter-spacing:.5px;font-size:1.1rem}.navlinks{display:flex;gap:17px;flex-wrap:wrap}.navlinks a{color:white;text-decoration:none;font-size:.92rem}
+.hero{max-width:850px}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.78rem;font-weight:bold;opacity:.9}
+h1{font-size:clamp(2.3rem,6vw,4.6rem);line-height:1.08;margin:12px 0 18px}.hero p{font-size:1.12rem;max-width:720px}
+.authors{margin-top:26px;padding:15px 18px;border:1px solid #ffffff70;background:#ffffff18;border-radius:14px;display:inline-block}
+main{max-width:1100px;margin:auto;padding:42px 22px 70px}.section{margin:0 0 52px;scroll-margin-top:20px}
+h2{color:var(--deep);font-size:1.8rem;margin:0 0 15px}h3{margin:0 0 9px;color:#79345f}
+.lead{font-size:1.08rem;color:var(--muted);max-width:850px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 6px 22px #6d31500c}
+.card .icon{font-size:1.65rem;margin-bottom:8px}.card p{margin:0;color:var(--muted)}
+.callout{border-left:5px solid var(--pink);background:var(--pale);padding:17px 20px;border-radius:0 13px 13px 0;margin:20px 0}
+code{background:#f9e7f0;padding:2px 6px;border-radius:5px;color:#81365f}
+table{width:100%;border-collapse:collapse;background:white;border-radius:13px;overflow:hidden;margin-top:18px}
+th,td{text-align:left;padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#fbe3ef;color:#78335f}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;margin:14px 0;padding:15px 16px 15px 58px;background:white;border:1px solid var(--line);border-radius:13px;position:relative}.steps li:before{content:counter(step);position:absolute;left:16px;top:14px;width:27px;height:27px;border-radius:50%;background:var(--pink);color:white;text-align:center;line-height:27px;font-weight:bold}
+.demo{background:#302638;color:white;padding:23px;border-radius:17px;margin-top:18px}.demo label{display:block;margin:10px 0 5px}.demo textarea{width:100%;min-height:85px;border:1px solid #a78b9e;border-radius:9px;padding:11px;font:inherit}.demo button{background:#f08bb9;border:0;padding:10px 17px;border-radius:9px;font-weight:bold;cursor:pointer;color:#3c1d31}.result{background:#49384a;padding:12px;border-radius:9px;margin-top:12px;min-height:48px}
+.quiz{background:#fff;border:1px solid var(--line);border-radius:17px;padding:22px}.quiz button{display:block;width:100%;text-align:left;padding:11px;margin:8px 0;border:1px solid var(--line);background:#fff7fb;border-radius:9px;cursor:pointer}.quiz button:hover{border-color:var(--pink)}#feedback{font-weight:bold;margin-top:12px}
+footer{text-align:center;padding:28px;background:#fbe5f0;color:#69405a}
+.small{font-size:.9rem;color:var(--muted)}a{color:#9b3f75}
+@media(max-width:600px){header{padding:30px 6% 42px}.navlinks{gap:10px}.navlinks a{font-size:.82rem}main{padding:30px 16px}}
+</style>
+</head>
+<body>
+<header>
+<nav><div class="logo">✦ IA EN CLARO</div><div class="navlinks"><a href="#concepto">Concepto</a><a href="#funcionamiento">Funcionamiento</a><a href="#requerimientos">Requerimientos</a><a href="#ejemplo">Ejemplo</a><a href="#quiz">Evaluación</a></div></nav>
+<div class="hero">
+<div class="eyebrow">Materia · Requerimientos de Software</div>
+<h1>Tokens de inteligencia artificial</h1>
+<p>Una guía para comprender cómo los modelos de IA procesan el lenguaje, por qué utilizan tokens y qué debemos tener en cuenta al integrar estas herramientas en un producto de software.</p>
+<div class="authors"><strong>Presentado por:</strong><br>Laura Valentina Reyes Zambrano<br>Laura Catalina Malagon<br><span class="small" style="color:#fff">Cuarto semestre · Universidad de Cundinamarca</span></div>
+</div>
+</header>
+<main>
+<section class="section" id="concepto">
+<h2>1. ¿Qué es un token?</h2>
+<p class="lead">Un token es una unidad de texto que un modelo de inteligencia artificial utiliza para representar y procesar la información. Puede corresponder a una palabra completa, una parte de una palabra, un signo de puntuación o incluso espacios y otros elementos, según el sistema de tokenización.</p>
+<div class="callout"><strong>Idea clave:</strong> un token no equivale necesariamente a una palabra. Por eso, contar palabras no permite conocer con exactitud cuántos tokens tiene un texto.</div>
+<div class="grid">
+<div class="card"><div class="icon">🔤</div><h3>Palabra completa</h3><p>Algunas palabras frecuentes pueden representarse como un solo token.</p></div>
+<div class="card"><div class="icon">🧩</div><h3>Fragmento</h3><p>Una palabra larga o poco frecuente puede dividirse en varias unidades.</p></div>
+<div class="card"><div class="icon">✳️</div><h3>Signos y símbolos</h3><p>La puntuación, números y ciertos símbolos también pueden generar tokens.</p></div>
+</div>
+</section>
+<section class="section" id="funcionamiento">
+<h2>2. ¿Cómo funcionan?</h2>
+<p>Antes de procesar una solicitud, el modelo convierte el texto en tokens mediante un proceso llamado <strong>tokenización</strong>. Después analiza la secuencia, calcula qué elementos son relevantes y genera una respuesta que también se convierte en tokens.</p>
+<ol class="steps">
+<li><strong>Entrada:</strong> la persona escribe una instrucción o pregunta.</li>
+<li><strong>Tokenización:</strong> el texto se divide en unidades que el modelo puede procesar.</li>
+<li><strong>Procesamiento:</strong> el modelo utiliza el contexto disponible para interpretar la solicitud.</li>
+<li><strong>Generación:</strong> produce una respuesta token por token.</li>
+<li><strong>Salida:</strong> los tokens generados se convierten nuevamente en texto legible.</li>
+</ol>
+<div class="callout"><strong>Importante:</strong> la forma exacta de dividir un texto depende del modelo y de su tokenizador. Dos modelos diferentes pueden contar los tokens de manera distinta.</div>
+</section>
+<section class="section" id="importancia">
+<h2>3. ¿Por qué son importantes?</h2>
+<div class="grid">
+<div class="card"><div class="icon">📏</div><h3>Ventana de contexto</h3><p>Los modelos tienen un límite de tokens que pueden considerar en una interacción. Ese límite puede incluir instrucciones, historial, documentos y respuesta.</p></div>
+<div class="card"><div class="icon">💳</div><h3>Costos de uso</h3><p>En muchos servicios, el precio depende de los tokens de entrada y salida. Las tarifas varían según el proveedor y el modelo.</p></div>
+<div class="card"><div class="icon">⚡</div><h3>Rendimiento</h3><p>La cantidad de información enviada puede influir en el tiempo de procesamiento y en el tamaño de la respuesta.</p></div>
+<div class="card"><div class="icon">🧠</div><h3>Calidad del contexto</h3><p>Una solicitud clara y relevante ayuda a que el modelo reciba la información necesaria sin contenido innecesario.</p></div>
+</div>
+</section>
+<section class="section" id="requerimientos">
+<h2>4. Relación con Requerimientos de Software</h2>
+<p class="lead">Cuando un equipo decide incorporar IA generativa en un sistema, debe convertir esa idea en requisitos claros, verificables y medibles. Los tokens generan restricciones técnicas y económicas que deben contemplarse desde el análisis.</p>
+<table>
+<thead><tr><th>Tipo de requerimiento</th><th>Ejemplo relacionado con tokens</th><th>¿Cómo verificarlo?</th></tr></thead>
+<tbody>
+<tr><td><strong>Funcional</strong></td><td>El sistema debe enviar la pregunta del usuario al modelo y mostrar la respuesta recibida.</td><td>Realizar una prueba de envío y recepción de una consulta.</td></tr>
+<tr><td><strong>No funcional – rendimiento</strong></td><td>El sistema debe responder dentro del tiempo definido para las consultas habituales.</td><td>Medir tiempos con diferentes longitudes de entrada.</td></tr>
+<tr><td><strong>No funcional – capacidad</strong></td><td>El sistema debe controlar la longitud de las instrucciones para respetar el límite de contexto del modelo.</td><td>Probar entradas cercanas y superiores al límite configurado.</td></tr>
+<tr><td><strong>No funcional – costo</strong></td><td>El sistema debe registrar o estimar el consumo de tokens por solicitud.</td><td>Comparar el consumo registrado con el reporte del proveedor.</td></tr>
+<tr><td><strong>Seguridad y privacidad</strong></td><td>El sistema no debe enviar datos personales innecesarios a un servicio externo de IA.</td><td>Revisar los datos transmitidos y aplicar pruebas de privacidad.</td></tr>
+</tbody></table>
+<div class="callout"><strong>En el análisis de requisitos:</strong> se deben definir límites de uso, comportamiento ante errores, manejo de información sensible, presupuesto, tiempos de respuesta y criterios de aceptación. No basta con escribir “el sistema tendrá inteligencia artificial”.</div>
+</section>
+<section class="section" id="ejemplo">
+<h2>5. Ejemplo aplicado: asistente académico</h2>
+<p>Imaginemos una plataforma universitaria que utiliza IA para responder preguntas sobre una asignatura. Cada consulta y cada respuesta consumen tokens.</p>
+<div class="grid">
+<div class="card"><h3>Necesidad del usuario</h3><p>Consultar conceptos de una materia y recibir explicaciones sencillas.</p></div>
+<div class="card"><h3>Requisito funcional</h3><p>El sistema permitirá escribir una pregunta y visualizar la respuesta generada por IA.</p></div>
+<div class="card"><h3>Restricción técnica</h3><p>El sistema validará la longitud del contenido antes de enviarlo al modelo.</p></div>
+</div>
+<div class="demo">
+<h3 style="color:#ffd1e5">Prueba interactiva: estima el tamaño de un texto</h3>
+<p style="color:#eee">Escribe una frase y observa una estimación didáctica. La regla usada aquí es aproximada: 1 token por cada 4 caracteres. <strong>No es un conteo real</strong> y puede variar según idioma y tokenizador.</p>
+<label for="sample">Texto de prueba</label><textarea id="sample" placeholder="Ejemplo: El sistema debe responder preguntas de los estudiantes."></textarea>
+<button onclick="estimate()">Estimar tokens</button>
+<div class="result" id="result" aria-live="polite">La estimación aparecerá aquí.</div>
+</div>
+<p class="small">Ejemplo de criterio de aceptación: “Dado que el usuario ingresa una consulta dentro del límite establecido, cuando la envía, entonces el sistema debe mostrar la respuesta del servicio de IA o informar claramente si se supera el límite o ocurre un error”.</p>
+</section>
+<section class="section" id="buenas-practicas">
+<h2>6. Buenas prácticas para un proyecto de software</h2>
+<ul>
+<li>Escribir instrucciones concretas y evitar contexto que no aporte a la tarea.</li>
+<li>Definir límites de caracteres o tokens y validar las entradas.</li>
+<li>Controlar el consumo para evitar costos inesperados.</li>
+<li>Informar al usuario cuando una solicitud sea demasiado extensa.</li>
+<li>Proteger datos personales y revisar las políticas del proveedor de IA.</li>
+<li>Probar el sistema con preguntas cortas, largas, ambiguas y casos de error.</li>
+<li>Documentar el modelo, sus límites, costos y criterios de aceptación.</li>
+</ul>
+</section>
+<section class="section" id="quiz">
+<h2>7. Comprueba lo aprendido</h2>
+<div class="quiz">
+<strong>¿Cuál afirmación describe mejor un token?</strong>
+<button onclick="answer(false)">A. Siempre equivale a una palabra completa.</button>
+<button onclick="answer(true)">B. Es una unidad de texto que el modelo procesa; puede ser una palabra o parte de ella.</button>
+<button onclick="answer(false)">C. Es lo mismo que una instrucción de programación.</button>
+<div id="feedback" aria-live="polite"></div>
+</div>
+</section>
+<section class="section">
+<h2>Conclusión</h2>
+<p>Los tokens son las unidades con las que los modelos de IA procesan el lenguaje. Comprenderlos permite estimar el tamaño de las solicitudes, administrar el contexto, controlar costos y diseñar mejores experiencias. Desde Requerimientos de Software, este conocimiento ayuda a especificar de forma clara las capacidades, restricciones, condiciones de seguridad y criterios de aceptación de un sistema que incorpora inteligencia artificial.</p>
+</section>
+<section class="section">
+<h2>Glosario rápido</h2>
+<table><tbody>
+<tr><th>Tokenización</th><td>Proceso de dividir el texto en tokens.</td></tr>
+<tr><th>Token de entrada</th><td>Unidad procesada a partir de la información enviada al modelo.</td></tr>
+<tr><th>Token de salida</th><td>Unidad generada como parte de la respuesta del modelo.</td></tr>
+<tr><th>Ventana de contexto</th><td>Cantidad máxima de tokens que el modelo puede considerar en una interacción, según sus especificaciones.</td></tr>
+<tr><th>Tokenizador</th><td>Método o componente que realiza la división del texto.</td></tr>
+</tbody></table>
+</section>
+</main>
+<footer>Universidad de Cundinamarca · Ingeniería de Software · Cuarto semestre<br>Materia: Requerimientos de Software<br>Laura Valentina Reyes Zambrano · Laura Catalina Malagon</footer>
+<script>
+function estimate(){
+ const value=document.getElementById('sample').value;
+ if(!value.trim()){document.getElementById('result').textContent='Escribe un texto para realizar la estimación.';return;}
+ const count=Math.ceil(value.length/4);
+ document.getElementById('result').textContent=`Caracteres: ${value.length}. Estimación aproximada: ${count} tokens. El conteo real depende del tokenizador y del modelo.`;
+}
+function answer(correct){
+ const el=document.getElementById('feedback');
+ el.textContent=correct?'¡Correcto! Un token puede ser una palabra completa o un fragmento.':'Inténtalo de nuevo. Recuerda que los tokens no siempre coinciden con palabras.';
+ el.style.color=correct?'#24834d':'#b33c68';
+}
+</script>
+</body>
+</html>
